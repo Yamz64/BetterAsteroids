@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class OldFaithfulMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    
     public float Tforce;
     public float speed;
     public float maxTorque;
+    public Object bullet;
+    public Transform projectileSpawn;
+    private Rigidbody2D rb;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -21,6 +26,11 @@ public class OldFaithfulMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             rb.AddForce(transform.up * speed);
+            anim.SetBool("Thrust", true);
+        }
+        else
+        {
+            anim.SetBool("Thrust", false);
         }
         rb.AddTorque(Input.GetAxis("Horizontal") * Tforce);
         if(rb.angularVelocity > maxTorque)
@@ -31,21 +41,9 @@ public class OldFaithfulMovement : MonoBehaviour
         {
             rb.angularVelocity = -maxTorque;
         }
-        if(transform.position.y <= -6.35)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            transform.position = new Vector3(transform.position.x, 6.2f, transform.position.z);
-        }
-        if(transform.position.y >= 6.35)
-        {
-            transform.position = new Vector3(transform.position.x, -6.2f, transform.position.z);
-        }
-        if(transform.position.x >= 10.9)
-        {
-            transform.position = new Vector3(-10.8f, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x <= -10.9)
-        {
-            transform.position = new Vector3(+10.8f, transform.position.y, transform.position.z);
+            Instantiate(bullet, projectileSpawn.position, projectileSpawn.rotation);
         }
     }
 }
