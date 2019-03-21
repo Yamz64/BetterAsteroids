@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OldFaithfulMovement : MonoBehaviour
 {
-    
+
     public float Tforce;
     public float speed;
     public float maxTorque;
@@ -23,7 +23,7 @@ public class OldFaithfulMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             rb.AddForce(transform.up * speed);
             anim.SetBool("Thrust", true);
