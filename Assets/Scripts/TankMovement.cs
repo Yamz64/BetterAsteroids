@@ -15,7 +15,7 @@ public class TankMovement : MonoBehaviour
     {
         Instantiate(crosshairo);
         barrel = transform.GetChild(0);
-        bulletspawn = barrel.GetComponentInChildren<Transform>();
+        bulletspawn = barrel.transform.GetChild(0);
         rb = GetComponent<Rigidbody2D>();
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
     }
@@ -75,6 +75,13 @@ public class TankMovement : MonoBehaviour
         else
         {
             barrel.eulerAngles = new Vector3(0.0f, 0.0f, angle+180);
+        }
+        if(Input.GetButton("Fire1"))
+        {
+            if (GameObject.FindGameObjectWithTag("Rocket") == null)
+            {
+                Instantiate(rocket, bulletspawn.position, bulletspawn.rotation);
+            }
         }
     }
 }
