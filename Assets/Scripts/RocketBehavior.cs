@@ -44,4 +44,12 @@ public class RocketBehavior : MonoBehaviour
             Explode();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Asteroid")
+        {
+            Explode();
+        }
+    }
 }

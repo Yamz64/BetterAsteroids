@@ -19,4 +19,15 @@ public class ExplosionBehavior : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Asteroid")
+        {
+            AsteroidBehavior split = other.GetComponent<AsteroidBehavior>();
+            if(split.itime <= 0.0f)
+            {
+                split.Explode();
+            }
+        }
+    }
 }

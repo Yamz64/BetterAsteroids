@@ -13,6 +13,7 @@ public class HammerHeadMovement : MonoBehaviour
     private SpriteRenderer image;
     private Rigidbody2D rb;
     private GameObject crosshair;
+    private Collider2D col;
 
     // Start is called before the first frame update
     void Start()
@@ -21,14 +22,16 @@ public class HammerHeadMovement : MonoBehaviour
         image = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+        col = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((rb.velocity.x <= cooldownspeed) && (rb.velocity.y <= cooldownspeed))
+        if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x,2)+Mathf.Pow(rb.velocity.y,2)) < cooldownspeed)
         {
             image.sprite = images[0];
+            col.isTrigger = false;
             float distancex = crosshair.transform.position.x - transform.position.x;
             float distancey = crosshair.transform.position.y - transform.position.y;
             float angle = -Mathf.Rad2Deg * Mathf.Atan(distancex / distancey);
@@ -48,8 +51,20 @@ public class HammerHeadMovement : MonoBehaviour
         else
         {
             image.sprite = images[1];
+            col.isTrigger = true;
         }
         velocityx = rb.velocity.x;
         velocityy = rb.velocity.y;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Asteroid")
+        {
+            AsteroidBehavior split = other.GetComponent<AsteroidBehavior>();
+            if (split.itime <= 0.0f)
+            {
+                split.Explode();
+            }
+        }
     }
 }

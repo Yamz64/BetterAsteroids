@@ -24,4 +24,13 @@ public class OldReliableProjectileBehavior : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Asteroid")
+        {
+            other.GetComponent<AsteroidBehavior>().Explode();
+            Destroy(gameObject);
+        }
+    }
 }

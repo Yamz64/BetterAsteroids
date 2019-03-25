@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7062520533056964371}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   speed: 5
   crosshairo: {fileID: 5246951027118513932, guid: 2278a3e739f3f36448f21e1a9fcf9376,
     type: 3}
-  rocket: {fileID: 0}
+  rocket: {fileID: 8986668425492675754, guid: 01ce5372f1f72d4478ed94cb717401f4, type: 3}
   barrel: {fileID: 0}
 --- !u!1 &7062520533078632785
 GameObject:
