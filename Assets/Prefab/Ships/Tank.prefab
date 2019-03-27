@@ -159,7 +159,7 @@ MonoBehaviour:
   crosshairo: {fileID: 5246951027118513932, guid: 2278a3e739f3f36448f21e1a9fcf9376,
     type: 3}
   rocket: {fileID: 8986668425492675754, guid: 01ce5372f1f72d4478ed94cb717401f4, type: 3}
-  barrel: {fileID: 0}
+  barrel: {fileID: 7062520533242743556}
 --- !u!1 &7062520533078632785
 GameObject:
   m_ObjectHideFlags: 0

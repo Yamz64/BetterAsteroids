@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class HammerHeadMovement : MonoBehaviour
 {
-    public float speed;
-    public float velocityx;
-    public float velocityy;
-    public float cooldownspeed;
-    public Sprite[] images;
-    public Object crosshairo;
-    private SpriteRenderer image;
-    private Rigidbody2D rb;
-    private GameObject crosshair;
-    private Collider2D col;
+    public float speed;             //float value stores the speed that the Hammer Head launches at
+    public float velocityx;         //float value that reads the x velocity of the Hammer Head
+    public float velocityy;         //float value that reads the y velocity of the Hammer Head
+    public float cooldownspeed;     //float value that reads the speed threshold where the Hammer Head can be launched at
+    public Sprite[] images;         //sprite array stores all the sprites that the Hammer Head will display
+    public Object crosshairo;       //crosshairo or crosshair object is the crosshair prefab
+    private SpriteRenderer image;   //image is the SpriteRenderer component attached to the gameobject
+    private Rigidbody2D rb;         //rb is the Rigidbody2D componenet attached to the GameObject
+    private GameObject crosshair;   //crosshair is the crosshair GameObject in the scene
+    private Collider2D col;         //col is the Collider2D object attached to the GameObject
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class HammerHeadMovement : MonoBehaviour
         if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x,2)+Mathf.Pow(rb.velocity.y,2)) < cooldownspeed)
         {
             image.sprite = images[0];
+            image.color = Color.white;
             col.isTrigger = false;
             float distancex = crosshair.transform.position.x - transform.position.x;
             float distancey = crosshair.transform.position.y - transform.position.y;
@@ -45,12 +46,13 @@ public class HammerHeadMovement : MonoBehaviour
             }
             if (Input.GetButtonDown("Fire1"))
             {
-                rb.AddForce(transform.up * speed);
+                rb.AddForce(transform.up * speed * Mathf.Sqrt(distancex*distancex+distancey*distancey));
             }
         }
         else
         {
             image.sprite = images[1];
+            image.color = Color.yellow;
             col.isTrigger = true;
         }
         velocityx = rb.velocity.x;

@@ -154,3 +154,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5868549cf4b3b684ba9913c09141856c, type: 3}
   - {fileID: 21300000, guid: e7203b39e7f72e846a6af1546b5b3b9f, type: 3}
   asteroid: {fileID: 1686417602173354657}
+  destructions:
+  - {fileID: 5347141198508599570, guid: ed20adcac032b6b43afcd7aa4792d899, type: 3}
+  - {fileID: 1147236310353093372, guid: 93d4becb13ada23458a16319ad7c028b, type: 3}
+  - {fileID: 5864452644611292780, guid: 456b01efabdb45b4e8481d66d887567f, type: 3}

@@ -176,11 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314b9c5e72ac2604881ae5308fb535bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tforce: -5
+  tforce: -5
   speed: 7
-  maxTorque: 200
+  maxtorque: 100
   bullet: {fileID: 1412292224313370044, guid: 384fbc77189136844b5f17494c0d4039, type: 3}
-  projectileSpawn: {fileID: 8911466225133279208}
+  projectilespawn: {fileID: 8911466225133279208}
 --- !u!114 &8911466226453446937
 MonoBehaviour:
   m_ObjectHideFlags: 0
