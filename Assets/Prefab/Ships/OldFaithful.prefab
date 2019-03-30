@@ -179,7 +179,11 @@ MonoBehaviour:
   tforce: -5
   speed: 7
   maxtorque: 100
+  damageseq: 0
+  hp: 3
   bullet: {fileID: 1412292224313370044, guid: 384fbc77189136844b5f17494c0d4039, type: 3}
+  destruction: {fileID: 4717457031476440201, guid: 18350ce8ea474294db592236608bbc15,
+    type: 3}
   projectilespawn: {fileID: 8911466225133279208}
 --- !u!114 &8911466226453446937
 MonoBehaviour:

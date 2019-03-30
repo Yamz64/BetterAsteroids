@@ -156,9 +156,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  damageseq: 0
+  hp: 3
   crosshairo: {fileID: 5246951027118513932, guid: 2278a3e739f3f36448f21e1a9fcf9376,
     type: 3}
   rocket: {fileID: 8986668425492675754, guid: 01ce5372f1f72d4478ed94cb717401f4, type: 3}
+  destruction: {fileID: 5800061615524227600, guid: 60418868b51844543b7e157707d2854a,
+    type: 3}
   barrel: {fileID: 7062520533242743556}
 --- !u!1 &7062520533078632785
 GameObject:
