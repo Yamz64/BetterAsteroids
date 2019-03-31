@@ -17,6 +17,7 @@ public class HammerHeadMovement : MonoBehaviour
     private Rigidbody2D rb;         //rb is the Rigidbody2D componenet attached to the GameObject
     private GameObject crosshair;   //crosshair is the crosshair GameObject in the scene
     private Collider2D col;         //col is the Collider2D object attached to the GameObject
+    private ScoreBehavior score;    //The score UI element's ScoreBehavior component
 
     // Damage is called when ship takes damage
     public IEnumerator Damage()
@@ -56,6 +57,7 @@ public class HammerHeadMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();                               //rb is set equal to the attached RigidBody2D component
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");      //crosshair is set equal to the GameObject with the tag "Crosshair"
         col = GetComponent<Collider2D>();                               //col is set equal to the attached Collider2D component
+        score = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBehavior>();    //score is set equal to the ScoreBehavior component attached to the score UI element
     }
 
     // Update is called once per frame
@@ -119,6 +121,21 @@ public class HammerHeadMovement : MonoBehaviour
             //if split's itime is less than or equal to 0 seconds...
             if (split.itime <= 0.0f)
             {
+                //if the level of the asteroid is equal to 3...
+                if (split.level == 3)
+                {
+                    score.score += 10;  //...increment the score member variable of score by 10
+                }
+                //if the level of the asteroid is equal to 2...
+                else if (split.level == 2)
+                {
+                    score.score += 50;  //...increment the score member variable of score by 50
+                }
+                //if the level of the asteroid is equal to 1...
+                else if (split.level == 1)
+                {
+                    score.score += 100; //...increment the score member variable of score by 100
+                }
                 split.Explode();    //...start split's Explode() function
             }
         }

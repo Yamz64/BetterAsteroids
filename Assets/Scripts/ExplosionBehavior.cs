@@ -6,6 +6,13 @@ public class ExplosionBehavior : MonoBehaviour
 {
     public float growthspeed;       //float value stores the rate at which the blast-radius grows
     public float maxgrowthrad;      //float value stores the largest radius of the blast
+    private ScoreBehavior score;    //The score UI element's ScoreBehavior component
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        score = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBehavior>();    //score is set equal to the ScoreBehavior component attached to the score UI element
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,10 +37,25 @@ public class ExplosionBehavior : MonoBehaviour
         {
             AsteroidBehavior split = other.GetComponent<AsteroidBehavior>();    //temporary datatype named split is set equal to the attached AsteroidBehavior component
 
-            //if split's itime member variable is less than or equal to 0 seconds...
-            if(split.itime <= 0.0f)
+            //if split's itime is less than or equal to 0 seconds...
+            if (split.itime <= 0.0f)
             {
-                split.Explode();    //...initiate split's explode method
+                //if the level of the asteroid is equal to 3...
+                if (split.level == 3)
+                {
+                    score.score += 10;  //...increment the score member variable of score by 10
+                }
+                //if the level of the asteroid is equal to 2...
+                else if (split.level == 2)
+                {
+                    score.score += 50;  //...increment the score member variable of score by 50
+                }
+                //if the level of the asteroid is equal to 1...
+                else if (split.level == 1)
+                {
+                    score.score += 100; //...increment the score member variable of score by 100
+                }
+                split.Explode();    //...start split's Explode() function
             }
         }
     }
