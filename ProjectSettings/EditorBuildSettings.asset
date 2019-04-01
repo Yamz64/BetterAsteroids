@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: baf8c452ced52334e974dd59fa1443b0
+  - enabled: 1
+    path: Assets/Scenes/OldFaithfulGame.unity
+    guid: 64d76ec135eb3e046ac2b1ca290a8587
+  - enabled: 1
+    path: Assets/Scenes/TankGame.unity
+    guid: 21f9846470ff27145a34445664189904
+  - enabled: 1
+    path: Assets/Scenes/HammerHeadGame.unity
+    guid: a2bee586fed3ae242a31f5694350ade1
   m_configObjects: {}

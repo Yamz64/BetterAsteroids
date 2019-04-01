@@ -31,6 +31,7 @@ public class HammerHeadMovement : MonoBehaviour
         GameObject asteroidspawner = GameObject.FindGameObjectWithTag("AsteroidSpawner");   //GameObject asteroidspawner is set equal to the ameObject witht eh "AsteroidSpawner" tag
         asteroidspawner.GetComponent<AsteroidSpawner>().enabled = false;                    //asteroidspawner's AsteroidSpawner script is disabled
         transform.position = new Vector3(0.0f, 0.0f, 0.0f);                                 //the ship's position is reset to origin
+        rb.angularVelocity = 0;                                                             //reset the angular velocity
         image.enabled = true;                                                               //the SpriteRenderer Component is enabled
         image.color = new Color(255.0f, 255.0f, 255.0f, .5f);                               //the SpriteRenderer's color is set to semitransparent
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");             //GameObject[] asteroids is set equal to all GameObjects with the "Asteroid" tag
@@ -43,6 +44,7 @@ public class HammerHeadMovement : MonoBehaviour
 
         yield return new WaitForSeconds(3);                                 //wait 3 seconds
         rb.velocity = Vector2.zero;                                         //set the RigidBody2D's component's velocityx and velocityy to 0
+        rb.angularVelocity = 0;                                             //reset the angular velocity
         asteroidspawner.GetComponent<AsteroidSpawner>().enabled = true;     //asteroidspawner's AsteroidSpawner script is enabled
         col.enabled = true;                                                 //the Collider2DComponent is enabled
         damageseq = false;                                                  //damageseq is set to false to show ship has ended the damage sequence
@@ -104,9 +106,15 @@ public class HammerHeadMovement : MonoBehaviour
         velocityy = rb.velocity.y;          //velocityy is set to the y velocity of rb
 
         //if rb's velocity magnitude is less than .01f...
-        if (rb.velocity.magnitude < .01f)    
+        if (rb.velocity.magnitude < .05f)    
         {
             rb.velocity = Vector2.zero;         //...set rb's velocity to zero
+        }
+
+        //if rb's angular velocity is less tha .01f
+        if(rb.angularVelocity < .01f)
+        {
+            rb.angularVelocity = 0;             //...set rb's angular velocity to 0
         }
     }
 
