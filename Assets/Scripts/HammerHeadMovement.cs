@@ -27,28 +27,32 @@ public class HammerHeadMovement : MonoBehaviour
         Instantiate(destruction, transform.position, transform.rotation);                   //the destruction particle is instanced at the current position
         image.enabled = false;                                                              //the SpriteRenderer component is disabled
         col.enabled = false;                                                                //the Collider2D component is disabled
-        yield return new WaitForSeconds(1);                                                 //Wait 1 second
-        GameObject asteroidspawner = GameObject.FindGameObjectWithTag("AsteroidSpawner");   //GameObject asteroidspawner is set equal to the ameObject witht eh "AsteroidSpawner" tag
-        asteroidspawner.GetComponent<AsteroidSpawner>().enabled = false;                    //asteroidspawner's AsteroidSpawner script is disabled
-        transform.position = new Vector3(0.0f, 0.0f, 0.0f);                                 //the ship's position is reset to origin
-        rb.angularVelocity = 0;                                                             //reset the angular velocity
-        image.enabled = true;                                                               //the SpriteRenderer Component is enabled
-        image.color = new Color(255.0f, 255.0f, 255.0f, .5f);                               //the SpriteRenderer's color is set to semitransparent
-        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");             //GameObject[] asteroids is set equal to all GameObjects with the "Asteroid" tag
 
-        //iterates integer i until it is less than the length of asteroids
-        for(int i=0; i<asteroids.Length; ++i)
+        //if hp is not equal to -1...
+        if (hp != -1)
         {
-            Destroy(asteroids[i]);  //destroy asteroid at index i
+            yield return new WaitForSeconds(1);                                                 //Wait 1 second
+            GameObject asteroidspawner = GameObject.FindGameObjectWithTag("AsteroidSpawner");   //GameObject asteroidspawner is set equal to the ameObject witht eh "AsteroidSpawner" tag
+            asteroidspawner.GetComponent<AsteroidSpawner>().enabled = false;                    //asteroidspawner's AsteroidSpawner script is disabled
+            transform.position = new Vector3(0.0f, 0.0f, 0.0f);                                 //the ship's position is reset to origin
+            rb.angularVelocity = 0;                                                             //reset the angular velocity
+            image.enabled = true;                                                               //the SpriteRenderer Component is enabled
+            image.color = new Color(255.0f, 255.0f, 255.0f, .5f);                               //the SpriteRenderer's color is set to semitransparent
+            GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");             //GameObject[] asteroids is set equal to all GameObjects with the "Asteroid" tag
+
+            //iterates integer i until it is less than the length of asteroids
+            for (int i = 0; i < asteroids.Length; ++i)
+            {
+                Destroy(asteroids[i]);  //destroy asteroid at index i
+            }
+
+            yield return new WaitForSeconds(3);                                 //wait 3 seconds
+            rb.velocity = Vector2.zero;                                         //set the RigidBody2D's component's velocityx and velocityy to 0
+            rb.angularVelocity = 0;                                             //reset the angular velocity
+            asteroidspawner.GetComponent<AsteroidSpawner>().enabled = true;     //asteroidspawner's AsteroidSpawner script is enabled
+            col.enabled = true;                                                 //the Collider2DComponent is enabled
+            damageseq = false;                                                  //damageseq is set to false to show ship has ended the damage sequence
         }
-
-        yield return new WaitForSeconds(3);                                 //wait 3 seconds
-        rb.velocity = Vector2.zero;                                         //set the RigidBody2D's component's velocityx and velocityy to 0
-        rb.angularVelocity = 0;                                             //reset the angular velocity
-        asteroidspawner.GetComponent<AsteroidSpawner>().enabled = true;     //asteroidspawner's AsteroidSpawner script is enabled
-        col.enabled = true;                                                 //the Collider2DComponent is enabled
-        damageseq = false;                                                  //damageseq is set to false to show ship has ended the damage sequence
-
     }
 
     // Start is called before the first frame update
