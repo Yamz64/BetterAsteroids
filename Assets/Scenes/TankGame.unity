@@ -581,10 +581,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803f70dcd4584cb4f9370418e9ebe806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultytimer: 0
   nextasteroid: 1
   maxasteroids: 5
   asteroidbounds: {x: 0, y: 1}
   asteroid: {fileID: 1686417602173354657, guid: 058374a0a655aac468cd1ea3fb19a3e3,
+    type: 3}
+  magnetmine: {fileID: 1136777362737214736, guid: 88b367b779cdd854182ded686a6f97ef,
     type: 3}
   asteroids: []
   player: {fileID: 0}

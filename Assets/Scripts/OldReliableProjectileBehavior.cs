@@ -52,6 +52,11 @@ public class OldReliableProjectileBehavior : MonoBehaviour
                 score.score += 100; //...increment the score member variable of score by 100
             }
             Destroy(gameObject);                                //...destroy the projectile
+        }else if(other.tag == "MagnetMine")
+        {
+            score.score += 50;
+            MagneMineBehavior magnetmine = other.GetComponent<MagneMineBehavior>();
+            magnetmine.Explode();
         }
     }
 }

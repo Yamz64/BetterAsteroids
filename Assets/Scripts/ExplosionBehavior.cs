@@ -58,5 +58,11 @@ public class ExplosionBehavior : MonoBehaviour
                 split.Explode();    //...start split's Explode() function
             }
         }
+        else if (other.tag == "MagnetMine")
+        {
+            score.score += 50;
+            MagneMineBehavior magnetmine = other.GetComponent<MagneMineBehavior>();
+            magnetmine.Explode();
+        }
     }
 }

@@ -58,5 +58,9 @@ public class RocketBehavior : MonoBehaviour
         {
             Explode();  //...the Explode() function is initialized
         }
+        else if (other.tag == "MagnetMine")
+        {
+            Explode();
+        }
     }
 }

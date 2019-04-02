@@ -10,6 +10,7 @@ TagManager:
   - AsteroidSpawner
   - Score
   - HiScore
+  - MagnetMine
   layers:
   - Default
   - TransparentFX

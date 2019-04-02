@@ -41,11 +41,16 @@ public class TankMovement : MonoBehaviour
             GetComponent<SpriteRenderer>().color = new Color(255.0f, 255.0f, 255.0f, .5f);      //the SpriteRenderer's color is set to semitransparent
             barrel.GetComponent<SpriteRenderer>().color = new Color(255.0f, 255.0f, 255.0f, .5f);//the barrel's SpriteRenderer's color is set to semitransparent
             GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");             //GameObject[] asteroids is set equal to all GameObjects with the "Asteroid" tag
+            GameObject[] magnetmines = GameObject.FindGameObjectsWithTag("MagnetMine");
 
             //iterates integer i until it is less than the length of asteroids
             for (int i = 0; i < asteroids.Length; ++i)
             {
                 Destroy(asteroids[i]);  //destroy asteroid at index i
+            }
+            for (int i = 0; i < magnetmines.Length; ++i)
+            {
+                Destroy(magnetmines[i]);  //destroy asteroid at index i
             }
 
             yield return new WaitForSeconds(3);                                             //wait 3 seconds
@@ -158,6 +163,12 @@ public class TankMovement : MonoBehaviour
         if (collision.collider.tag == "Asteroid")
         {
             StartCoroutine(Damage());   //...initiate the Damage() function
+        }
+        else if (collision.collider.tag == "MagnetMine")
+        {
+            MagneMineBehavior magnetmine = collision.collider.GetComponent<MagneMineBehavior>();
+            magnetmine.Explode();
+            StartCoroutine(Damage());
         }
     }
 }

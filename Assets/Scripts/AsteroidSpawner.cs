@@ -9,6 +9,7 @@ public class AsteroidSpawner : MonoBehaviour
     public float maxasteroids;      //float value determines the max amount of asteroids
     public Vector2 asteroidbounds;  //the least and most amount of time taken inbetween asteroid spawns
     public Object asteroid;         //asteroid prefab
+    public Object magnetmine;       //magnet mine prefab
     public GameObject[] asteroids;  //Gameobject array stores all asteroids
     public GameObject player;       //Player gameobject
 
@@ -34,8 +35,14 @@ public class AsteroidSpawner : MonoBehaviour
                 float distance = Mathf.Sqrt(Mathf.Pow(xpos - player.transform.position.x, 2) + Mathf.Pow(ypos - player.transform.position.y, 2));   //the distance between the player and the prospective point is calculated
                 if(distance > 3.0f)     //if the distance between the player and the prospective point is greater than 3...
                 {
-                    Instantiate(asteroid, new Vector3(xpos, ypos), transform.rotation);     //create an asteroid at that position
-                    nextasteroid = Random.Range(asteroidbounds[0], asteroidbounds[1]);      //nextasteroid is set to a random amount between the asteroidbounds
+                    float spawnmine = Random.Range(0, 10);
+                    if(spawnmine == 9){
+                        Instantiate(magnetmine, new Vector3(xpos, ypos), transform.rotation);
+                        nextasteroid = Random.Range(asteroidbounds[0], asteroidbounds[1]);
+                    }else{
+                        Instantiate(asteroid, new Vector3(xpos, ypos), transform.rotation);     //create an asteroid at that position
+                        nextasteroid = Random.Range(asteroidbounds[0], asteroidbounds[1]);      //nextasteroid is set to a random amount between the asteroidbounds
+                    }
                 }
             }
         }
