@@ -15,6 +15,8 @@ public class OldFaithfulMovement : MonoBehaviour
     public Transform projectilespawn;   //transform child where projectiles will spawn
     private Rigidbody2D rb;             //RigidBody2D component attached
     private Animator anim;              //animator componenet attached
+    private AudioSource shoot;          //the attached audiosource component for the shoot sound
+    private AudioSource explode;        //the attached audiosource component for exploding
 
     // Damage is called when ship takes damage
     public IEnumerator Damage()
@@ -22,6 +24,7 @@ public class OldFaithfulMovement : MonoBehaviour
         damageseq = true;                                                                   //damageseq is set to true to show ship is in damage sequence
         hp -= 1;                                                                            //health is decremented by 1
         Instantiate(destruction, transform.position, transform.rotation);                   //the destruction particle is instanced at the current position
+        explode.Play();                                                                     //play the explode sound
         GetComponent<SpriteRenderer>().enabled = false;                                     //the SpriteRenderer component is disabled
         GetComponent<Collider2D>().enabled = false;                                         //the Collider2D component is disabled
 
@@ -57,8 +60,10 @@ public class OldFaithfulMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();   //rb is set equal to the attached Rigidbody2D component
-        anim = GetComponent<Animator>();    //anim is set equal to the attached animator component
+        rb = GetComponent<Rigidbody2D>();           //rb is set equal to the attached Rigidbody2D component
+        anim = GetComponent<Animator>();            //anim is set equal to the attached animator component
+        shoot = GetComponents<AudioSource>()[0];    //shoot is set equal to the attached AudioSource component for shooting
+        explode = GetComponents<AudioSource>()[1];  //explode is set equal to the attached AudioSource component for exploding
     }
 
     // Update is called once per frame
@@ -84,6 +89,7 @@ public class OldFaithfulMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))                                            //if the space key is pressed...
         {
+            shoot.Play();                                                                   //play the fire sound
             Instantiate(bullet, projectilespawn.position, projectilespawn.rotation);        //fire a bullet
         }
     }

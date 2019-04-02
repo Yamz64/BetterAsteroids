@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
 {
+    public float difficultytimer;   //float value store the amount of time that has passed to determine difficulty
     public float nextasteroid;      //float value stores time until the next asteroid
     public float maxasteroids;      //float value determines the max amount of asteroids
     public Vector2 asteroidbounds;  //the least and most amount of time taken inbetween asteroid spawns
@@ -21,6 +22,7 @@ public class AsteroidSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        difficultytimer += 1.0f * Time.deltaTime;           //Increase the difficultytimer over time
         asteroids = GameObject.FindGameObjectsWithTag("Asteroid");  //all objects with "Asteroid" tag are added to asteroids array
         if(asteroids.Length < maxasteroids)                 //if the length of the asteroids array is less than the max asteroids float...
         {
@@ -36,6 +38,14 @@ public class AsteroidSpawner : MonoBehaviour
                     nextasteroid = Random.Range(asteroidbounds[0], asteroidbounds[1]);      //nextasteroid is set to a random amount between the asteroidbounds
                 }
             }
+        }
+        if(difficultytimer > 30.0f)
+        {
+            maxasteroids = 5 + (int)(difficultytimer / 15.0f);
+        }
+        else
+        {
+            maxasteroids = 5;
         }
     }
 }

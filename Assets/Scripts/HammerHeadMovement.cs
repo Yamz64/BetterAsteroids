@@ -18,6 +18,8 @@ public class HammerHeadMovement : MonoBehaviour
     private GameObject crosshair;   //crosshair is the crosshair GameObject in the scene
     private Collider2D col;         //col is the Collider2D object attached to the GameObject
     private ScoreBehavior score;    //The score UI element's ScoreBehavior component
+    private AudioSource ramsound;   //The audiosource attached that plays the ram sound
+    private AudioSource explode;    //The audiosource attached that plays the explosion sound
 
     // Damage is called when ship takes damage
     public IEnumerator Damage()
@@ -25,6 +27,7 @@ public class HammerHeadMovement : MonoBehaviour
         damageseq = true;                                                                   //damageseq is set to true to show ship is in damage sequence
         hp -= 1;                                                                            //health is decremented by 1
         Instantiate(destruction, transform.position, transform.rotation);                   //the destruction particle is instanced at the current position
+        explode.Play();                                                                     //play the explosion sound
         image.enabled = false;                                                              //the SpriteRenderer component is disabled
         col.enabled = false;                                                                //the Collider2D component is disabled
 
@@ -58,12 +61,15 @@ public class HammerHeadMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;                                         //Hide the mouse cursor
         Instantiate(crosshairo);                                        //Instance a crosshair at origin
         image = GetComponent<SpriteRenderer>();                         //image is set equal to the attached SpriteRenderer component
         rb = GetComponent<Rigidbody2D>();                               //rb is set equal to the attached RigidBody2D component
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");      //crosshair is set equal to the GameObject with the tag "Crosshair"
         col = GetComponent<Collider2D>();                               //col is set equal to the attached Collider2D component
         score = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreBehavior>();    //score is set equal to the ScoreBehavior component attached to the score UI element
+        ramsound = GetComponents<AudioSource>()[0];                     //ramsound is set equal to the attached Audiosource component of index 0
+        explode = GetComponents<AudioSource>()[1];                      //explode is set equal to the attached Audiosource component of index 1
     }
 
     // Update is called once per frame
@@ -97,6 +103,7 @@ public class HammerHeadMovement : MonoBehaviour
             //if the "Fire1" button is pressed and the damageseq is set to false
             if ((Input.GetButtonDown("Fire1")) && (damageseq == false))
             {
+                ramsound.Play();    //...Play the ramsound
                 rb.AddForce(transform.up * speed * Mathf.Sqrt(distancex * distancex + distancey * distancey));  //...AddForce to the hammerhead so that it reaches the crosshair approximately
             }
         }

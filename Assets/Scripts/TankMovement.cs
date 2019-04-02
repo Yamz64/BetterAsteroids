@@ -14,6 +14,7 @@ public class TankMovement : MonoBehaviour
     private Transform bulletspawn;  //Transform bulletspawn will be set equal to the location that rockets will come out of
     private Rigidbody2D rb;         //Rigidbody2D rb will be set equal to the attached Rigidbody2D component
     private GameObject crosshair;   //GameObject crosshair will be set equal the GameObject component of the active crosshair prefab
+    private AudioSource explode;    //The AudioSource attached that plays the explode sound
 
 
     // Damage is called when ship takes damage
@@ -22,6 +23,7 @@ public class TankMovement : MonoBehaviour
         damageseq = true;                                                                   //damageseq is set to true to show ship is in damage sequence
         hp -= 1;                                                                            //health is decremented by 1
         Instantiate(destruction, transform.position, transform.rotation);                   //the destruction particle is instanced at the current position
+        explode.Play();                                                                     //play the exlosion sound
         GetComponent<SpriteRenderer>().enabled = false;                                     //the SpriteRenderer component is disabled
         barrel.GetComponent<SpriteRenderer>().enabled = false;                              //the SpriteRenderer attached to the barrel is disabled
         GetComponent<Collider2D>().enabled = false;                                         //the Collider2D component is disabled
@@ -59,11 +61,13 @@ public class TankMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;                                     //Hid e the mouse cursor
         Instantiate(crosshairo);                                    //Instance the crosshair prefab
         barrel = transform.GetChild(0);                             //barrel is set equal to the first child of the tank
         bulletspawn = barrel.transform.GetChild(0);                 //bulletspawn is set equal to the first child of the barrel
         rb = GetComponent<Rigidbody2D>();                           //rb is set equal to the attached Rigidbody2D component
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");  //crosshair is set equal to the GameObject in the scene with the "Crosshair" tag
+        explode = GetComponent<AudioSource>();                      //explode is set equal to the attached AudioSource component
     }
 
     // Update is called once per frame
