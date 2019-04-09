@@ -11,6 +11,7 @@ TagManager:
   - Score
   - HiScore
   - MagnetMine
+  - HPPickup
   layers:
   - Default
   - TransparentFX
