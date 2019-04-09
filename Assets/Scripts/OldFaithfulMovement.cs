@@ -112,5 +112,13 @@ public class OldFaithfulMovement : MonoBehaviour
             magnetmine.Explode();
             StartCoroutine(Damage());   
         }
+        else if (collision.collider.tag == "HPPickup")
+        {
+            if (hp < 4)
+            {
+                hp += 1;
+            }
+            Destroy(collision.collider.gameObject);
+        }
     }
 }

@@ -178,6 +178,12 @@ public class HammerHeadMovement : MonoBehaviour
             MagneMineBehavior magnetmine = collision.collider.GetComponent<MagneMineBehavior>();
             magnetmine.Explode();
             StartCoroutine(Damage());
+        }else if(collision.collider.tag == "HPPickup")
+        {
+            if(hp < 4)
+            {
+                hp += 1;
+            }
         }
     }
 }

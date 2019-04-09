@@ -252,6 +252,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e7203b39e7f72e846a6af1546b5b3b9f, type: 3}
   asteroid: {fileID: 1686417602173354657}
   noise: {fileID: 7510226917535611435, guid: f1296049d9bcc66438791e78f7b54f3f, type: 3}
+  hppickup: {fileID: 7990321736576082864, guid: f98624fac586de64ab13b4a6c7c3a18d,
+    type: 3}
   destructions:
   - {fileID: 5347141198508599570, guid: ed20adcac032b6b43afcd7aa4792d899, type: 3}
   - {fileID: 1147236310353093372, guid: 93d4becb13ada23458a16319ad7c028b, type: 3}
