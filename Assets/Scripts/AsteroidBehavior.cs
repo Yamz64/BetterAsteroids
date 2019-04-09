@@ -13,6 +13,7 @@ public class AsteroidBehavior : MonoBehaviour
     public Object asteroid;         //asteroid prefab
     public Object noise;            //empty object that plays a sound if the asteroid level is 0
     public Object hppickup;         //the object that spawns for a health pickup
+    public Object hppickupl;        //the object that spawns for a large health pickup
     public Object[] destructions;   //array of prefabs that spawn a different type of particle effect depending on the sprite currently used
     private Rigidbody2D rb;         //datatype Rigidbody2D rb will be set equal to the attached Rigidbody2D component
     private SpriteRenderer image;   //datatype SpriteRenderer will be set equal to the attached image component
@@ -26,9 +27,12 @@ public class AsteroidBehavior : MonoBehaviour
         Instantiate(asteroid, new Vector3(transform.position.x + Random.Range(-.001f, .001f), transform.position.y + Random.Range(-.001f, .001f), transform.position.z + Random.Range(-.001f, .001f)), transform.rotation);
 
         float healthchance = Random.Range(0, 100);
-        if(healthchance == 99)
+        if(healthchance > 90)
         {
             Instantiate(hppickup, transform.position, transform.rotation);
+        }else if(healthchance == 0)
+        {
+            Instantiate(hppickupl, transform.position, transform.rotation);
         }
 
         //if the spriterenderer's sprite is equal to...

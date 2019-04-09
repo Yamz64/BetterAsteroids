@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBehavior : MonoBehaviour
+public class SuperHealthupBehavior : HealthBehavior
 {
-    public SpriteRenderer sr;
-    public GameObject player;
-
-    // Start is called before the first frame update
-    public virtual void Start()
+    public override void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
         sr.sprite = player.GetComponent<SpriteRenderer>().sprite;
-        transform.localScale = player.transform.localScale;
+        transform.localScale = player.transform.localScale*2;
     }
 }

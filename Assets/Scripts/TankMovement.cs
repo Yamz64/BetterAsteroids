@@ -177,5 +177,17 @@ public class TankMovement : MonoBehaviour
                 hp += 1;
             }
         }
+        else if (collision.collider.tag == "HPPickupLarge")
+        {
+            if (hp < 3)
+            {
+                hp += 2;
+            }
+            else if (hp < 4)
+            {
+                hp += 1;
+            }
+            Destroy(collision.collider.gameObject);
+        }
     }
 }
